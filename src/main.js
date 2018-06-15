@@ -1,19 +1,19 @@
 import 'phaser';
-import BootScene from './BootScene';
-import GameScene from './GameScene';
-import TitleScene from './TitleScene';
+import BootScene from './scenes/BootScene';
+import GameScene from './scenes/GameScene';
+import TitleScene from './scenes/TitleScene';
 
 
 let config = {
     type: Phaser.WEBGL,              // Uses WebGL if available
     parent: 'content',              // container div to load into
-    backgroundColor: '0xffffff',
+    backgroundColor: '0x000000',
     width: window.innerWidth,       // grab the browser width
     height: window.innerHeight,     // and height
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 },
+            gravity: { y: 200 },
         }
     },
     scene: [

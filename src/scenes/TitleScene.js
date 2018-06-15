@@ -22,12 +22,22 @@ class TitleScene extends Phaser.Scene {
     }
 
     create() {
-        this.events.on('resize', this.resize, this);
-        
-        this.logo = this.physics.add.image(400, 100, 'logo'); // image was preloaded in the BootScene and given this reference
-        this.logo.setVelocity(100, 200);
-        this.logo.setBounce(1, 1);
-        this.logo.setCollideWorldBounds(true);
+
+      var particles = this.add.particles('blue');
+
+      var emitter = particles.createEmitter({
+          speed: 100,
+          scale: { start: 1, end: 0 },
+          blendMode: 'ADD'
+      });
+
+      var logo = this.physics.add.image(400, 100, 'logo');
+
+      logo.setVelocity(100, 200);
+      logo.setBounce(1, 1);
+      logo.setCollideWorldBounds(true);
+
+      emitter.startFollow(logo);
     }
 
     update(time, delta) {

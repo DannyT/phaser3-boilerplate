@@ -33,7 +33,6 @@
     "webpack": "^3.4.1"
   },
   "dependencies": {
-    "phaser": "3.3.0",
-    "phaser-animated-tiles": "^1.0.0"
+    "phaser": "3.10.1"
   }
 }
