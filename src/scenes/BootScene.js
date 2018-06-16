@@ -15,10 +15,10 @@ class BootScene extends Phaser.Scene {
 
       var progress = this.add.graphics();
 
-      this.load.on('progress', function (value) {
+      this.load.on('progress', (value) => {
           progress.clear();
           progress.fillStyle(0x990000, 1);
-          progress.fillRect(0, 270, 800 * value, 60);
+          progress.fillRect(0, this.sys.game.config.width/2-60, this.sys.game.config.width * value, 60);
       });
 
       this.load.on('complete', function () {
@@ -26,8 +26,6 @@ class BootScene extends Phaser.Scene {
       });
 
       this.load.setBaseURL('http://labs.phaser.io');
-      this.load.image('sky', 'assets/skies/space3.png');
-      this.load.image('logo2', 'assets/sprites/phaser3-logo.png');
       this.load.image('blue', 'assets/particles/blue.png');
       
       // load a bunch more assets to test preloader
