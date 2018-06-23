@@ -12,7 +12,7 @@ Navigate into your workspace directory.
 
 Run:
 
-```git clone git@bitbucket.org:moov2/pirbright-pandemic-x.git```
+```git clone git@github.com:DannyT/phaser3-boilerplate.git```
 
 ## 2. Install node.js and npm:
 
