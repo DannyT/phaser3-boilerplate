@@ -6,10 +6,15 @@ import TitleScene from './scenes/TitleScene';
 
 let config = {
     type: Phaser.WEBGL,              // Uses WebGL if available
+    /* 
+    width: 1280,
+    height: 600,
+    */    
+    width: window.innerWidth,
+    height: window.innerHeight,
+    
     parent: 'content',              // container div to load into
     backgroundColor: '0x000000',
-    width: window.innerWidth,       // grab the browser width
-    height: window.innerHeight,     // and height
     physics: {
         default: 'arcade',
         arcade: {
@@ -24,6 +29,7 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+
 
 // listen for browser resize and invoke the game's resize function
 window.addEventListener('resize', function (event) {

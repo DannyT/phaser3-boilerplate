@@ -10,7 +10,7 @@ class TitleScene extends Phaser.Scene {
      * Called when browser window resizes
      */
     resize (width, height) {
-      console.log("resizing bootscene");
+      // console.log("resizing bootscene");
       if (width === undefined) { width = this.sys.game.config.width; }
       if (height === undefined) { height = this.sys.game.config.height; }
 
@@ -38,6 +38,7 @@ class TitleScene extends Phaser.Scene {
       logo.setCollideWorldBounds(true);
 
       emitter.startFollow(logo);
+      this.events.on('resize', this.resize, this);
     }
 
     update(time, delta) {
