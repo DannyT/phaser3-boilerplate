@@ -1,50 +1,38 @@
+import GameScene from './GameScene';
+
 class TitleScene extends Phaser.Scene {
-    
-    constructor() {
-      super({
-        key: 'TitleScene'
-      });
-    }
+  constructor() {
+    super({
+      key: 'TitleScene'
+    });
+  }
 
-    /**
-     * Called when browser window resizes
-     */
-    resize (width, height) {
-      // console.log("resizing bootscene");
-      if (width === undefined) { width = this.sys.game.config.width; }
-      if (height === undefined) { height = this.sys.game.config.height; }
+  preload() {}
 
-      this.cameras.resize(width, height);
-      this.physics.world.setBounds(0,0, width, height);
-    }
+  create() {
+    var particles = this.add.particles('blue');
 
-    preload() {
-    }
+    var emitter = particles.createEmitter({
+      speed: 100,
+      scale: { start: 1, end: 0 },
+      blendMode: 'ADD'
+    });
 
-    create() {
+    var logo = this.physics.add.image(400, 100, 'logo');
 
-      var particles = this.add.particles('blue');
+    logo.setVelocity(300, 400);
+    logo.setBounce(1, 1);
+    logo.setCollideWorldBounds(true);
 
-      var emitter = particles.createEmitter({
-          speed: 100,
-          scale: { start: 1, end: 0 },
-          blendMode: 'ADD'
-      });
+    emitter.startFollow(logo);
 
-      var logo = this.physics.add.image(400, 100, 'logo');
+    this.input.once('pointerdown', () => {
+      this.scene.add('GameScene', GameScene);
+      this.scene.start('GameScene');
+    });
+  }
 
-      logo.setVelocity(100, 200);
-      logo.setBounce(1, 1);
-      logo.setCollideWorldBounds(true);
-
-      emitter.startFollow(logo);
-      this.events.on('resize', this.resize, this);
-    }
-
-    update(time, delta) {
-    }
-
-    
+  update(time, delta) {}
 }
 
 export default TitleScene;

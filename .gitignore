@@ -1,6 +1,5 @@
+#default
 node_modules/
-dist/
-build/
 .vscode/
 .idea
 *.log
@@ -16,3 +15,17 @@ dump/
 *.bak*
 *.old*
 higherVolume/
+
+#editors
+*.pyxel
+
+#reporting
+/report
+
+#deploy
+/gh-pages
+
+#output
+dist/
+build/
+coverage/

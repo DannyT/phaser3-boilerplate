@@ -1,10 +1,10 @@
 # Phaser 3 Boilerplate
-A starting point for Phaser 3 projects. Full screen game default which resizes with browser resize/device rotation.
+A starting point for Phaser 3 projects. Multi-scene with preloading and click/keypress to start title screen.
 
-Based on [this excellent repo](https://github.com/nkholski/phaser3-es6-webpack) by @nkholski
+Based on [this](https://github.com/nkholski/phaser3-es6-webpack) and [this](https://github.com/simiancraft/create-phaser-app) repos which also include more complete game examples.
 
 # Setup
-You’ll need to install a few things before you have a working copy of the project.
+To get running
 
 ## 1. Clone this repo:
 
@@ -33,11 +33,11 @@ or if you choose yarn, just run ```yarn```
 
 Run:
 
-```npm run dev```
+```npm run start```
 
 This will run a server so you can run the game in a browser.
 
-Open your browser and enter localhost:3000 into the address bar.
+Open your browser and enter [localhost:3000](http://localhost:3000) into the address bar.
 
 Also this will start a watch process, so you can change the source and the process will recompile and refresh the browser.
 
@@ -46,6 +46,6 @@ Also this will start a watch process, so you can change the source and the proce
 
 Run:
 
-```npm run deploy```
+```npm run build```
 
 This will optimize and minimize the compiled bundle.
