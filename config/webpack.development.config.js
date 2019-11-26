@@ -36,6 +36,7 @@ module.exports = (env, options) => {
       host: '0.0.0.0'
     },
     mode: 'development',
+    devtool: 'cheap-eval-source-map',
     output: {
       path: dist,
       filename: '[name].bundle.js',
@@ -58,7 +59,7 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.(png|jpg|gif|ico|svg|pvr|pkm|static|ogg|mp3|wav)$/,
+          test: /\.(png|jpg|gif|ico|svg|pvr|pkm|static|mp3|webm)$/,
           exclude: [nodeModules],
           use: ['file-loader']
         },
@@ -69,7 +70,7 @@ module.exports = (env, options) => {
         },
 
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           use: [
             {
               loader: 'style-loader'
@@ -79,9 +80,8 @@ module.exports = (env, options) => {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64]',
-                sourceMap: true,
-                minimize: true
+                localsConvention: 'dashes',
+                sourceMap: true
               }
             }
           ]

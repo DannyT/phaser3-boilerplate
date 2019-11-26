@@ -1,7 +1,14 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { phaser, phaserModule, nodeModules, dist, ghpages } = require('./paths');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const {
+  phaser,
+  phaserModule,
+  nodeModules,
+  dist,
+  ghpages,
+  ghPagesAppName
+} = require('./paths');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const definePlugin = new webpack.DefinePlugin({
   WEBGL_RENDERER: true,
@@ -17,9 +24,18 @@ const htmlPlugin = new HtmlWebpackPlugin({
   filename: './index.html'
 });
 
-const minimizePlugin = new UglifyJsPlugin({
+const minimizePlugin = new TerserPlugin({
+  extractComments: true,
+  cache: true,
   parallel: true,
-  extractComments: true
+  sourceMap: true, // Must be set to true if using source-maps in production
+  terserOptions: {
+    // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+    extractComments: 'all',
+    compress: {
+      drop_console: true
+    }
+  }
 });
 
 module.exports = (env, options) => {
@@ -29,7 +45,7 @@ module.exports = (env, options) => {
       path: env.ghpages ? ghpages : dist,
       filename: '[name].bundle.js',
       chunkFilename: '[name].bundle.js',
-      publicPath: env.ghpages ? '/create-phaser-app/' : '/'
+      publicPath: env.ghpages ? `/${ghPagesAppName}/` : '/'
     },
     optimization: {
       splitChunks: {
@@ -47,7 +63,7 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.(png|jpg|gif|ico|svg|pvr|pkm|static|ogg|mp3|wav)$/,
+          test: /\.(png|jpg|gif|ico|svg|pvr|pkm|static|mp3|webm)$/,
           exclude: [nodeModules],
           use: ['file-loader']
         },
@@ -68,9 +84,8 @@ module.exports = (env, options) => {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64]',
-                sourceMap: true,
-                minimize: true
+                localsConvention: 'dashes',
+                sourceMap: true
               }
             }
           ]

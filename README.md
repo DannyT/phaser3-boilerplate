@@ -34,6 +34,8 @@ or if you choose yarn, just run ```yarn```
 Run:
 
 ```npm run start```
+or
+```yarn start```
 
 This will run a server so you can run the game in a browser.
 
@@ -47,5 +49,7 @@ Also this will start a watch process, so you can change the source and the proce
 Run:
 
 ```npm run build```
+or
+```yarn build```
 
 This will optimize and minimize the compiled bundle.
